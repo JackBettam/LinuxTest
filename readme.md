@@ -33,35 +33,29 @@ Ideally the [tutorial from Vina will](https://autodock-vina.readthedocs.io/en/la
     error in vina setup command: 'python_requires' must be a string containing valid version specifiers; Invalid specifier: '>=3.5.*'
     ```
 
-To resolve this error, the most recent version of Python will need to be uninstalled and reinstalled. Full work-around details are below.
+To resolve this error, the most recent version of Python will need to be uninstalled and reinstalled. For the tested versions, Python 3.9.7 appears to be working. This also ensures compatability with other packages.
 
-### Workaround for version error
-If the [above error](#installing-autodock-vina) occurs, then the following workaround can be performed. This largely follows the Installation guide, but has a couple of extra lines which resolved the issue.
+First, an environment called vina is created, activated and configured with conda-forge (to access packages).
 
-#### Setup environment
-This creates a conda environment called vina. 
 ```
-conda create -n vina python=3
+conda create -n vina
 conda activate vina
-conda config --env --channels conda-forge
+conda install python=3.9.7
+conda config --env --add channels conda-forge
 ```
 
-#### Install pre-requisite packages
-This installs all pre-requsite packages.
+A sanity check can be done now - check the version of Python installed (sometimes conda can install the most recent version of Python...). If this is the case, uninstall Python and reinstall it at this point - uninstalling after this point will remove other packages!!
+
+```
+conda python -V
+# if Python is incorrect version
+conda uninstall python
+conda install python=3.9.7
+```
+
+The package and prerequisite packages can now be installed:
 ```
 conda install -c conda-forge numpy swig boost-cpp sphinx sphinx_rtd_theme
-```
-
-#### Remove Python and install Python 3.9
-This removes the current version of Python and installs an earlier version:
-```
-conda uninstall python
-conda install ptyhon=3.9
-```
-
-#### Install Vina
-Finally, Vina can be installed:
-```
 pip install vina
 ```
 
@@ -69,10 +63,11 @@ pip install vina
 OpenBabel requires rdkit, scipy and numpy to function. The following is set up for a conda install. __Ensure that the vina environment is active!!__
 
 ```
-conda 
+conda install -c conda-forge numpy openbabel scipy rdkit
+pip install meeko
 ```
 
 ## Install ADFR
-ADFR can be installed using[ ADFR's tutorial](https://ccsb.scripps.edu/adcp/windows10/). This seems to work quite well and relaibly. 
+ADFR can be installed using[ ADFR's tutorial](https://ccsb.scripps.edu/adcp/windows10/). This seems to work quite well and relaibly. This is done for the system, and not for the environment. 
 
 Basic documentation of ADFR can be found [here](https://ccsb.scripps.edu/adfr/tutorial-redocking/). 
