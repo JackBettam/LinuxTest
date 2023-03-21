@@ -64,3 +64,6 @@ Finally, Vina can be installed:
 ```
 pip install vina
 ```
+
+## Install ADFR
+ADFR can be installed using[ ADFR's tutorial](https://ccsb.scripps.edu/adcp/windows10/).
