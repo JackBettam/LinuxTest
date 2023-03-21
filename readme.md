@@ -65,5 +65,14 @@ Finally, Vina can be installed:
 pip install vina
 ```
 
+## Install OpenBabel (rdkit, scipy & numpy)
+OpenBabel requires rdkit, scipy and numpy to function. The following is set up for a conda install. __Ensure that the vina environment is active!!__
+
+```
+conda 
+```
+
 ## Install ADFR
-ADFR can be installed using[ ADFR's tutorial](https://ccsb.scripps.edu/adcp/windows10/).
+ADFR can be installed using[ ADFR's tutorial](https://ccsb.scripps.edu/adcp/windows10/). This seems to work quite well and relaibly. 
+
+Basic documentation of ADFR can be found [here](https://ccsb.scripps.edu/adfr/tutorial-redocking/). 
