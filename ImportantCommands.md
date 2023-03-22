@@ -1,6 +1,8 @@
 ## Basic Linux terminal
 There are some basic terminal commands that may be useful. 
-* When specifying a target directory for a file use a fullstop if the directory is nested in the directory that the bash script is running, then the target directory can be specified by ```./target_directory```. 
+* A single dot can be used to go down a level from where the terminal exists. This allows a file to run from a nested directory. For example: ```./some_directory```. 
+* A double dot can be used to go up a level from where the terminal exists. This allows a file to run from a different directory.For example: ```../some_directory```
+* To go to the users directory a tilde can be used. From here, other directories can be accessed: ```~/some_directory```.
 
 ## Basic docking
 The following commands require ADFR, and need to be routed to the bin directory of ADFR. If ADFR10 is in the same directory you're running the bash terminal in, then you can use something like the following to activate the functions:
