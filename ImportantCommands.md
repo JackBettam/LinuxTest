@@ -18,6 +18,7 @@ For the commands below, for simplicity, the command should replace ```*your_comm
 ### Preparing receptor
 
 First Excplicit hydrogens need to be added.
+
 There are two ways to add hydrogens to a protein/receptor:
 * using the ```prepare_receptor``` command - this uses OpenBabel to add hydrogens. This is automatic, but no longer the recommended way of adding hydrogens. 
 * using the ```reduce``` command - this is a custom command from the Richardson lab[^1] - and is now included in ADFR. 
@@ -34,7 +35,13 @@ The next step is to create a pdbqt file. This is a file that contains[^2]:
 * Atom charges
 * Information on the articulation of flexible molecules. 
 
+This can be done using the `prepare_receptor` command. By adding the variable `-h` it is possible to see all possible variable that can be added. In this case, there will be two variables added - the receptor PDB (with explict hydrogens embedded from earlier) and the output name. These are added with the flags `-r` and `-o` respectively. 
 
+Hence, the code will take receptor `Output_protein_H.pdb` and produce a file called `Output_protein.pdbqt`:
+
+```
+prepare_receptor -r Output_protein_H.pdb -o Output_protein.pdbqt
+```
 
 ## References
 [^1]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (March 2023)
