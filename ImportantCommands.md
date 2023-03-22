@@ -29,7 +29,7 @@ Hence, the reduce command should be run to add explicit hyrdogens:
 reduce Input_protein.pdb > Output_protein_H.pdb
 ```
 
-The next step is to create a pdbqt file. This is a file that contains[^2]:
+The next step is to create a PDBQT file. This is a file that contains[^2]:
 * Polar hydrogen atoms
 * Partial charges
 * Atom charges
@@ -41,6 +41,18 @@ Hence, the code will take receptor `Output_protein_H.pdb` and produce a file cal
 
 ```
 prepare_receptor -r Output_protein_H.pdb -o Output_protein.pdbqt
+```
+
+### Prpeare the Ligand
+The next step is to prepare the ligand. This also creates a PDBQT file. This uses Meeko. This inputs standard 3D formats (mol, mol2, sdf etc.). This uses the script `mk_prepare_ligand.py`. The ligand files may not contain hydorgens, and so these will be automatically added. 
+
+> #### Warning
+> PDB files should __not__ be used for small molecules - these filetypes do not contain bond connections. 
+
+Full flag types can be found by passing `--help` when calling the script. In this case, we're calling the `-i` and `-o` variables to represent the input and output of the ligands. 
+
+```
+mk_prepare_ligand.py -i input_ligand.sdf -o output_ligand.pdbqt
 ```
 
 ## References
