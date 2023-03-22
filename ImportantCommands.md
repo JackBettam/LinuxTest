@@ -1,6 +1,6 @@
 ## Basic Linux terminal
 There are some basic terminal commands that may be useful. 
-* When specifying a 
+* When specifying a target directory for a file use a fullstop if the directory is nested in the directory that the bash script is running, then the target directory can be specified by ```./target_directory```. 
 
 ## Basic docking
 The following commands require ADFR, and need to be routed to the bin directory of ADFR. If ADFR10 is in the same directory you're running the bash terminal in, then you can use something like the following to activate the functions:
