@@ -28,7 +28,16 @@ Follow [instructions](https://learn.microsoft.com/en-us/windows/wsl/install) on 
     ```
 
 ## Installing Autodock Vina
-Ideally the [tutorial from Vina will](https://autodock-vina.readthedocs.io/en/latest/installation.html) work, but a fatal error is currently problematic:
+Autodock can be installed and run from the command line. This can be done using sudo (which requires admin privelages). 
+
+The following code should be run:
+
+```
+sudo apt install autodock-vina
+```
+
+## Installing Autodock Vina (Python bindings)
+Ideally the [tutorial from Vina](https://autodock-vina.readthedocs.io/en/latest/installation.html) will work, but a fatal error is currently problematic:
     ```
     error in vina setup command: 'python_requires' must be a string containing valid version specifiers; Invalid specifier: '>=3.5.*'
     ```

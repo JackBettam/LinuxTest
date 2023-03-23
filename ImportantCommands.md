@@ -7,6 +7,8 @@ There are some basic terminal commands that may be useful.
 
 ## Basic docking
 
+This is a more in-depth version of the basic docking tutorial provided by AutoDock Vina.[^1]
+
 The following commands require ADFR, and need to be routed to the bin directory of ADFR. If ADFR10 is in the same directory you're running the bash terminal in, then you can use something like the following to activate the functions:
 ```
 ./ADFR10/bin/*your_command*
@@ -21,7 +23,7 @@ First Excplicit hydrogens need to be added.
 
 There are two ways to add hydrogens to a protein/receptor:
 * using the ```prepare_receptor``` command - this uses OpenBabel to add hydrogens. This is automatic, but no longer the recommended way of adding hydrogens. 
-* using the ```reduce``` command - this is a custom command from the Richardson lab[^1] - and is now included in ADFR. 
+* using the ```reduce``` command - this is a custom command from the Richardson lab[^2] - and is now included in ADFR. 
 
 Hence, the reduce command should be run to add explicit hyrdogens:
 
@@ -29,7 +31,7 @@ Hence, the reduce command should be run to add explicit hyrdogens:
 reduce Input_protein.pdb > Output_protein_H.pdb
 ```
 
-The next step is to create a PDBQT file. This is a file that contains[^2]:
+The next step is to create a PDBQT file. This is a file that contains[^3]:
 * Polar hydrogen atoms
 * Partial charges
 * Atom charges
@@ -44,10 +46,12 @@ prepare_receptor -r Output_protein_H.pdb -o Output_protein.pdbqt
 ```
 
 ### Prpeare the Ligand
+
 The next step is to prepare the ligand. This also creates a PDBQT file. This uses Meeko. This inputs standard 3D formats (mol, mol2, sdf etc.). This uses the script `mk_prepare_ligand.py`. The ligand files may not contain hydorgens, and so these will be automatically added. 
 
 > #### Warning
-> PDB files should __not__ be used for small molecules - these filetypes do not contain bond connections. 
+> 
+>PDB files should __not__ be used for small molecules - these filetypes do not contain bond connections. 
 
 Full flag types can be found by passing `--help` when calling the script. In this case, we're calling the `-i` and `-o` variables to represent the input and output of the ligands. 
 
@@ -56,6 +60,7 @@ mk_prepare_ligand.py -i input_ligand.sdf -o output_ligand.pdbqt
 ```
 
 ### Generating Affinity Maps
+
 This step is optional, but for completeness of the guide, this will be included. This uses the MGLtools programs. 
 
 First a gpf file is generated for AutoGrid4. This requires that MGLtools is installed (if an error such as `pythonsh: command not found` then it is likely MGLtools is not installed correctly). 
@@ -72,7 +77,7 @@ The flags `-l`, `-r` and `-y` specify the ligand, receptor and centre the grid a
 
 This creates a single file called `output_protein.gpf`
 
-The final step is to create an autogrid map files that will be used for molecular docking. This is performed by:
+The final step is to create an autogrid map files (which are affinity maps) that will be used for molecular docking. This is performed by:
 
 ```
 autogrid4 -p output_protein.gpf -l 1iep.glg 
@@ -83,8 +88,26 @@ This produces 4 types of files (but may be more files...):
 * `1iep_receptor.d.map` : desolvation map
 * `1iep_receptor.e.map` : electrostatic map
 
+### Running Autodock Vina
+
+There are two methods of running - either using the AutoDock4 forcefield (requires affinity maps, above) or Vina forcefield (which does not require any affinity maps). For this tutorial, Autodock will be used.
+
+In both of these, there is an exhaustiveness variablee, which has a default value of `8` - increasing the value to `32` leads to more consistent docking results.
+
+Autodock uses various variables:
+* `--ligand` is the ligand that is being docked (.pdbqt file)
+* `--maps` is the name of the grid data file (.maps.fld without the extensions - just the file name)
+* `--scoring` is the scoring method - this `ad4` uses AutoDock4 forcefield. `vinardo` will use the Vinardo scoring function. 
+* `--exhaustiveness` is the amount of computational effort put in - discussed above
+* `--out` is the output file. 
+
+This leads to the following command:
+```
+vina --ligand 1iep  --ligand 1iep_ligand.pdbqt --maps 1iep_receptor --scoring ad4 --exhaustiveness 32 --out 1iep_ligand_ad4_out.pdbqt
+```
 
 
 ## References
-[^1]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (March 2023)
-[^2]: Morris, G. M., et. al., _AutoDock 4.2 User Guide_, Scripps Research, San Diego (USA), 2014 
+[^1]: Basic docking - Autodock Vina 1.2.0 documentation, [https://autodock-vina.readthedocs.io/en/latest/docking_basic.html](https://autodock-vina.readthedocs.io/en/latest/docking_basic.html), (Accessed March 2023)
+[^2]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (Accessed March 2023)
+[^3]: Morris, G. M., et. al., _AutoDock 4.2 User Guide_, Scripps Research, San Diego (USA), 2014 
