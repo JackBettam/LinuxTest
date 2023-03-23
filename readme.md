@@ -93,3 +93,9 @@ source ./initMGLtools.sh
 ```
 
 This now will have made a directory on the users directory called `mgltools` which all scripts are placed in. 
+
+## Install AutoGrid
+AutoGrid can be installed via the sudo command:
+```
+sudo apt install autogrid
+```

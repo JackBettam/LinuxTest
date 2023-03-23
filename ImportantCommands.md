@@ -55,6 +55,36 @@ Full flag types can be found by passing `--help` when calling the script. In thi
 mk_prepare_ligand.py -i input_ligand.sdf -o output_ligand.pdbqt
 ```
 
+### Generating Affinity Maps
+This step is optional, but for completeness of the guide, this will be included. This uses the MGLtools programs. 
+
+First a gpf file is generated for AutoGrid4. This requires that MGLtools is installed (if an error such as `pythonsh: command not found` then it is likely MGLtools is not installed correctly). 
+
+The script can be [downloaded](https://github.com/ccsb-scripps/AutoDock-Vina/tree/develop/example/autodock_scripts) - as the one that is included in MGLtools has been adapted by the authors of Vina. This can be installed in any location and called as below. 
+
+In the terminal, this can be run as:
+
+```
+pythonsh <script_directory>/prepare_gpf.py -l output_ligand.pdbqt -r output_protein.pdbqt -y
+```
+
+The flags `-l`, `-r` and `-y` specify the ligand, receptor and centre the grid automatically around the ligand. 
+
+This creates a single file called `output_protein.gpf`
+
+The final step is to create an autogrid map files that will be used for molecular docking. This is performed by:
+
+```
+autogrid4 -p output_protein.gpf -l 1iep.glg 
+```
+This produces 4 types of files (but may be more files...):
+* `1iep_receptor.maps.fld` : grid data file
+* `1iep_receptor.*.map` : affinity maps for each atom type (there will be a different map for each atom type, and thus there may be multiple of these maps)
+* `1iep_receptor.d.map` : desolvation map
+* `1iep_receptor.e.map` : electrostatic map
+
+
+
 ## References
 [^1]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (March 2023)
 [^2]: Morris, G. M., et. al., _AutoDock 4.2 User Guide_, Scripps Research, San Diego (USA), 2014 
