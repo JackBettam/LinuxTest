@@ -71,3 +71,25 @@ pip install meeko
 ADFR can be installed using[ ADFR's tutorial](https://ccsb.scripps.edu/adcp/windows10/). This seems to work quite well and relaibly. This is done for the system, and not for the environment. 
 
 Basic documentation of ADFR can be found [here](https://ccsb.scripps.edu/adfr/tutorial-redocking/). 
+
+## Install MGLtools
+MGLTools may also be required. Documentation seems to be lacking for this installation in virtualised environments as it's designed for running on full GUI versions. But the below seems to work fairly well.
+
+First the download files are installed in the home directory of the user, followed by unzipping in a directory called mgltools.
+
+```
+cd ~
+curl -k https://ccsb.scripps.edu/download/532/ --output mgltools.tar.gz
+mkdir -p mgltools
+tar -xvzf mgltools.tar.gz -C mgltools --strip-components=1
+```
+
+Now the tools should be installed:
+
+```
+cd mgltools
+bash install.sh
+source ./initMGLtools.sh
+```
+
+This now will have made a directory on the users directory called `mgltools` which all scripts are placed in. 
