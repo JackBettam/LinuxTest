@@ -92,7 +92,7 @@ This produces 4 types of files (but may be more files...):
 
 There are two methods of running - either using the AutoDock4 forcefield (requires affinity maps, above) or Vina forcefield (which does not require any affinity maps). For this tutorial, Autodock will be used.
 
-In both of these, there is an exhaustiveness variablee, which has a default value of `8` - increasing the value to `32` leads to more consistent docking results.
+In both of these, there is an exhaustiveness variablee, which has a default value of `8` - increasing the value to `32` leads to more consistent docking results. To see full list of available commands, `--help` can be parsed. It's also worth noting that only 9 poses will be generated automatically, and pose 1 will be the lowest energy (and the last generated).
 
 Autodock uses various variables:
 * `--ligand` is the ligand that is being docked (.pdbqt file)
@@ -126,7 +126,7 @@ Basic analysis can be shown below [^4]
 * Selecting the 'c' button will show the respective atomic sphere structure. 
 * Selecting the 'r' button of the protein will show the ribbon form of the protein. 
 * selecting the  'm' button will show the molecular surface for the selection
-5. Interactions can be shown for a relevant docking by selecting Analyze -> Dockings -> Show Interactions.
+5. Interactions can be shown for a relevant docking by selecting Analyze -> Dockings -> Show Interactions. This produces an image showing amino acid residues interacting with the ligand. 
 
 ## References
 [^1]: Basic docking - Autodock Vina 1.2.0 documentation, [https://autodock-vina.readthedocs.io/en/latest/docking_basic.html](https://autodock-vina.readthedocs.io/en/latest/docking_basic.html), (Accessed March 2023)
