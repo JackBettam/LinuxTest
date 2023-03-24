@@ -80,13 +80,13 @@ This creates a single file called `output_protein.gpf`
 The final step is to create an autogrid map files (which are affinity maps) that will be used for molecular docking. This is performed by:
 
 ```
-autogrid4 -p output_protein.gpf -l 1iep.glg 
+autogrid4 -p output_protein.gpf -l output_protein.glg 
 ```
 This produces 4 types of files (but may be more files...):
-* `1iep_receptor.maps.fld` : grid data file
-* `1iep_receptor.*.map` : affinity maps for each atom type (there will be a different map for each atom type, and thus there may be multiple of these maps)
-* `1iep_receptor.d.map` : desolvation map
-* `1iep_receptor.e.map` : electrostatic map
+* `output_protein_receptor.maps.fld` : grid data file
+* `output_protein_receptor.*.map` : affinity maps for each atom type (there will be a different map for each atom type, and thus there may be multiple of these maps)
+* `output_protein_receptor.d.map` : desolvation map
+* `output_protein_receptor.e.map` : electrostatic map
 
 ### Running Autodock Vina
 
@@ -103,11 +103,33 @@ Autodock uses various variables:
 
 This leads to the following command:
 ```
-vina --ligand 1iep  --ligand 1iep_ligand.pdbqt --maps 1iep_receptor --scoring ad4 --exhaustiveness 32 --out 1iep_ligand_ad4_out.pdbqt
+vina --ligand output_ligand.pdbqt --maps output_protein_receptor --scoring ad4 --exhaustiveness 32 --out docking_out.pdbqt
 ```
 
+### Reading the Output of the 
+
+The output from this is placed in the respective output file. The table in the command line lists the poses that have been generated, and their affinity (in kcal/mol). A reminder: the lower the binding energy the better fit a ligand is. 
+
+In the output file is all of the poses that were calculated. This is a pdbqt file. As the Linux WSL has no GUI, this should be copied across to Windows. This then can be opened on [AutoDockTools](https://ccsb.scripps.edu/mgltools/downloads/) running on Windows. This is the same for any pdbqt files - they need to be copied from the WSL to the Windows partition. 
+
+> Whilst it is possible to open files in the WSL, it appears to be slow and can cause crashes of software.
+
+Basic analysis can be shown below [^4]
+
+1. After opening AutoDockTools, select Analyze --> Dockings --> Open AutoDock vina result and select the output pdbqt results file - `docking_out.pdbqt`
+2. The different poses can be opened using arrow keys. The number presented is the binding energy. 
+3. The protein can be added in using the Analyze --> Macromolecule --> New and select `output_protein.pdbqt`.
+4. There are a few rendering tools that can be used:
+* Selecting the 's' button of the ligand or protein will highlight the selected ligand or protein.
+* Selecting the 'l' button of the ligand or protein will show the respective skeletal structure drawing.
+* Selecting the 'b' button of the ligand or protein will show the respective ball and stick structure.
+* Selecting the 'c' button will show the respective atomic sphere structure. 
+* Selecting the 'r' button of the protein will show the ribbon form of the protein. 
+* selecting the  'm' button will show the molecular surface for the selection
+5. Interactions can be shown for a relevant docking by selecting Analyze -> Dockings -> Show Interactions.
 
 ## References
 [^1]: Basic docking - Autodock Vina 1.2.0 documentation, [https://autodock-vina.readthedocs.io/en/latest/docking_basic.html](https://autodock-vina.readthedocs.io/en/latest/docking_basic.html), (Accessed March 2023)
 [^2]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (Accessed March 2023)
 [^3]: Morris, G. M., et. al., _AutoDock 4.2 User Guide_, Scripps Research, San Diego (USA), 2014 
+[^4] Autodock Vina Result Analysis, [https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360](https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360), (Accessed March 2023)
