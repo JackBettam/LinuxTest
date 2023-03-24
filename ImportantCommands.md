@@ -132,4 +132,4 @@ Basic analysis can be shown below [^4]
 [^1]: Basic docking - Autodock Vina 1.2.0 documentation, [https://autodock-vina.readthedocs.io/en/latest/docking_basic.html](https://autodock-vina.readthedocs.io/en/latest/docking_basic.html), (Accessed March 2023)
 [^2]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (Accessed March 2023)
 [^3]: Morris, G. M., et. al., _AutoDock 4.2 User Guide_, Scripps Research, San Diego (USA), 2014 
-[^4] Autodock Vina Result Analysis, [https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360](https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360), (Accessed March 2023)
+[^4]: Autodock Vina Result Analysis, [https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360](https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360), (Accessed March 2023)
