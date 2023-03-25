@@ -128,7 +128,7 @@ Basic analysis can be shown below [^4]
 * selecting the  'm' button will show the molecular surface for the selection
 5. Interactions can be shown for a relevant docking by selecting Analyze -> Dockings -> Show Interactions. This produces an image showing amino acid residues interacting with the ligand. 
 
-To convert the pdbqt file to a PDB file (for use in VMD etc.):
+To convert the pdbqt file to a single PDB file (for use in VMD etc.):
 1. Open the `docking_out.pdbqt` file in an editor. Remove all but the first (i.e. the lowest value) poses from the file. This can be done by selecting 'model 2' and holding `CTRL` + `SHIFT` + `END` to get to the end of the file, and then deleting this selection. This file should then be saved (save as a seperate file if you intend on using the pdbqt file in the future)
 2. In [OpenBabel](https://openbabel.org/wiki/Category:Installation) open the edited pdbqt file. Select 'pdb' as the output file, and save this as a something like `ligand.pdb`
 3. Repeat the same step for the protein, `output_protein.pdbqt`, calling the PDB file something like `receptor.pdb`.
