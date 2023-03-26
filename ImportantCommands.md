@@ -135,6 +135,16 @@ To convert the pdbqt file to a single PDB file (for use in VMD etc.):
 4. Next open [USCF Chimera](https://www.cgl.ucsf.edu/chimera/), and import both of these PDB files. 
 5. Save the files using the save function, ensuring both PDBs' are selected. 
 
+## Running bash scripts from Python scripts
+Bash commands can be run from within Python scripts. Python scripts can also be ran from bash. The general rule syntax for running a command is the following:
+```
+command -options inputs
+```
+
+So in the case of opening a Python script, the command would be python, options would be any options (for python specifically) followed by the input. Thus, running a python script called HelloWorld.py in verbose mode would look like: `python -v HelloWorld.py`. 
+
+Bash inputs can be crafted in a Python script and then ran on the bash command line. There are multiple modules that can run bash commands, but the currently best advised one in a module called subprocess.
+
 ## References
 [^1]: Basic docking - Autodock Vina 1.2.0 documentation, [https://autodock-vina.readthedocs.io/en/latest/docking_basic.html](https://autodock-vina.readthedocs.io/en/latest/docking_basic.html), (Accessed March 2023)
 [^2]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (Accessed March 2023)
