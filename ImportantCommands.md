@@ -143,10 +143,16 @@ command -options inputs
 
 So in the case of opening a Python script, the command would be python, options would be any options (for python specifically) followed by the input. Thus, running a python script called HelloWorld.py in verbose mode would look like: `python -v HelloWorld.py`. 
 
-Bash inputs can be crafted in a Python script and then ran on the bash command line. There are multiple modules that can run bash commands, but the currently best advised one in a module called subprocess.
+Bash inputs can be crafted in a Python script and then ran on the bash command line. There are multiple modules that can run bash commands, but the currently best advised one in a module called subprocess.[^5]
+
+The method `subpackage.run()` is what should be used to run scripts. This takes in a variety of arguments. The first argument is the command that should be run. Given that there can be a wide variety of inputs and characters for this, the input command is placed into a list (array) with each string in the command being seperate. Hence, running the script HelloWorld above (in verbose mode) would require the following code: `subpackage.run(['python', '-v', 'HelloWorld.py'])`. 
+
+There are a lot of variables that can also be called.[^6] 
 
 ## References
 [^1]: Basic docking - Autodock Vina 1.2.0 documentation, [https://autodock-vina.readthedocs.io/en/latest/docking_basic.html](https://autodock-vina.readthedocs.io/en/latest/docking_basic.html), (Accessed March 2023)
 [^2]: Richardson Laboratory: Reduce, [http://kinemage.biochem.duke.edu/software/reduce/](http://kinemage.biochem.duke.edu/software/reduce/), (Accessed March 2023)
 [^3]: Morris, G. M., et. al., _AutoDock 4.2 User Guide_, Scripps Research, San Diego (USA), 2014 
 [^4]: Autodock Vina Result Analysis, [https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360](https://www.youtube.com/watch?v=EkXY1uaMscg&ab_channel=QuickLearn360), (Accessed March 2023)
+[^5]: Subprocess Management - 3.11.2 [https://docs.python.org/3/library/subprocess.html](https://docs.python.org/3/library/subprocess.html), (Accessed March 2023)
+[^6]: How to Run Bash Script/Command Using Python [https://geekflare.com/python-run-bash/](https://geekflare.com/python-run-bash/), (Accessed March 2023)
